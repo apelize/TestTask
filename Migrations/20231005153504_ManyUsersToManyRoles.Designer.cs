@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TestTask.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20231005091859_ManyUsersToManyRoles")]
+    [Migration("20231005153504_ManyUsersToManyRoles")]
     partial class ManyUsersToManyRoles
     {
         /// <inheritdoc />
@@ -38,6 +38,28 @@ namespace TestTask.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Access = "SuperAdmin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Access = "Support"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Access = "Admin"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Access = "User"
+                        });
                 });
 
             modelBuilder.Entity("Entities.User", b =>
@@ -66,13 +88,13 @@ namespace TestTask.Migrations
 
             modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<int>("RolesId")
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.HasKey("RolesId", "UsersId");
+                    b.HasKey("StatusId", "UsersId");
 
                     b.HasIndex("UsersId");
 
@@ -83,7 +105,7 @@ namespace TestTask.Migrations
                 {
                     b.HasOne("Entities.Role", null)
                         .WithMany()
-                        .HasForeignKey("RolesId")
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

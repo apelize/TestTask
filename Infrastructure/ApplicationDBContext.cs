@@ -1,6 +1,5 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 public class ApplicationDBContext : DbContext
 {
@@ -14,5 +13,20 @@ public class ApplicationDBContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DatabaseConnection"));
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder
+                .Entity<Role>()
+                .Property(r => r.Id)
+                .UseIdentityColumn(1, 1);
+
+        modelBuilder
+                .Entity<Role>()
+                .HasData(new Role { Id = 1, Access = "SuperAdmin" },
+                         new Role { Id = 2, Access = "Support" },
+                         new Role { Id = 3, Access = "Admin" },
+                         new Role { Id = 4, Access = "User" });
     }
 }

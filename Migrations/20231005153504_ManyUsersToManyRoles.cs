@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TestTask.Migrations
 {
     /// <inheritdoc />
@@ -42,15 +44,15 @@ namespace TestTask.Migrations
                 name: "RoleUser",
                 columns: table => new
                 {
-                    RolesId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
                     UsersId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesId, x.UsersId });
+                    table.PrimaryKey("PK_RoleUser", x => new { x.StatusId, x.UsersId });
                     table.ForeignKey(
-                        name: "FK_RoleUser_Roles_RolesId",
-                        column: x => x.RolesId,
+                        name: "FK_RoleUser_Roles_StatusId",
+                        column: x => x.StatusId,
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -60,6 +62,17 @@ namespace TestTask.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "Access" },
+                values: new object[,]
+                {
+                    { 1, "SuperAdmin" },
+                    { 2, "Support" },
+                    { 3, "Admin" },
+                    { 4, "User" }
                 });
 
             migrationBuilder.CreateIndex(

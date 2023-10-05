@@ -1,10 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
 namespace Entities;
 
 public class User
 {
-    public required int Id { get; set; }
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     public required string Name { get; set; }
     public required int Age { get; set; }
     public required string Email { get; set; }
-    public required List<Role> Roles { get; set; }
+    public required List<Role> Status { get; set; }
 }

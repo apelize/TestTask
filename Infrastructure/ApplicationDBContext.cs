@@ -1,6 +1,8 @@
 using Entities;
 using Microsoft.EntityFrameworkCore;
 
+#pragma warning disable 1591
+
 public class ApplicationDBContext : DbContext
 {
     private readonly IConfiguration _configuration;

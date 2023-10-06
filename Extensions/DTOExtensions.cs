@@ -3,6 +3,8 @@ using Entities;
 
 namespace Extensions;
 
+#pragma warning disable 1591
+
 public static partial class Extensions
 {
     public static UserDTO ToUserDTO(this User user) =>

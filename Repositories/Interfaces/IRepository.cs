@@ -1,5 +1,4 @@
-using System.Linq.Expressions;
-
+#pragma warning disable 1591
 namespace Repositories.Interfaces;
 
 public interface IRepository<TEntity> where TEntity : class

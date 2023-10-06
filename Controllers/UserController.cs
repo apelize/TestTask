@@ -4,6 +4,8 @@ using Extensions;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 
+#pragma warning disable 1591
+
 [ApiController]
 [Route("api/[controller]")]
 public class UserController : ControllerBase

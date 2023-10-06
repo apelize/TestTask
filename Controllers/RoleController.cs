@@ -1,6 +1,8 @@
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 
+#pragma warning disable 1591
+
 [Route("api/[controller]")]
 [ApiController]
 public class RoleController : ControllerBase

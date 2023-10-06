@@ -1,5 +1,6 @@
-using System.Reflection;
 using Entities;
+
+#pragma warning disable 1591
 
 namespace Extensions;
 

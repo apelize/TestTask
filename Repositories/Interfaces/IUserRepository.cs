@@ -1,6 +1,8 @@
 using DTO;
 using Entities;
 
+#pragma warning disable 1591
+
 namespace Repositories.Interfaces;
 
 public interface IUserRepository : IRepository<User>

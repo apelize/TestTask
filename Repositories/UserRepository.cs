@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using DTO;
 using Extensions;
 
+#pragma warning disable 1591
 namespace Repositories;
 
 public class UserRepository : IRepository<User>, IUserRepository

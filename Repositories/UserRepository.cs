@@ -42,10 +42,9 @@ public class UserRepository : IRepository<User>, IUserRepository
 
     public async Task<IEnumerable<User>> GetAll(string? filter = null, string? filterValue = null, string? sort = null, string order = "ASC", int pageIndex = 1, int pageSize = 10)
     {
-        IEnumerable<User> usersToGet = (await _context.Users.Include(u => u.Status).ToListAsync())
-                .FilterUsers(filter, filterValue)
-                .SortUsers(sort, order);
-
+        IQueryable<User> usersToGet = (_context.Users.Include(u => u.Status))
+                .FilterUsers(filter!, filterValue!)
+                .SortUsers(sort!, order);
 
         return usersToGet.Skip((pageIndex - 1) * pageSize).Take(pageSize);
     }
